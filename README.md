@@ -13,9 +13,6 @@ Inspired by:
 Resources
 ---
 
-Scraping Reddit - https://towardsdatascience.com/scraping-reddit-data-1c0af3040768
-Share prices - https://towardsdatascience.com/free-stock-data-for-python-using-yahoo-finance-api-9dafd96cad2e
-List of symbols - https://stackoverflow.com/questions/25338608/download-all-stock-symbol-list-of-a-market
-NASDAQ - https://old.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download
-AMEX - https://old.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=amex&render=download
-NYSE - https://old.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nyse&render=download
+- Scraping Reddit - https://towardsdatascience.com/scraping-reddit-data-1c0af3040768
+- Share prices - https://towardsdatascience.com/free-stock-data-for-python-using-yahoo-finance-api-9dafd96cad2e
+- List of symbols - https://stackoverflow.com/questions/25338608/download-all-stock-symbol-list-of-a-market
