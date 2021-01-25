@@ -50,14 +50,18 @@ def main():
     post_df["to_search"] = post_df["title"] + post_df["post"]
     results = {}
     for symbol in symbols["Symbol"]:
-        # Search the posts (both title and text) for the symbol
+        # Search the posts (both title and text) for the symbol with a dollar sign
         result = post_df[
-                            post_df["to_search"].str.contains(" " + symbol + " ", regex=False) |
-                            post_df["to_search"].str.contains(" " + symbol + ",", regex=False) |
                             post_df["to_search"].str.contains("$"+ symbol + " ", regex=False) |
                             post_df["to_search"].str.contains("$" + symbol + ",", regex=False)
                         ]
         if not result.empty:
+            result = post_df[
+                post_df["to_search"].str.contains(" " + symbol + " ", regex=False) |
+                post_df["to_search"].str.contains(" " + symbol + ",", regex=False) |
+                post_df["to_search"].str.contains("$" + symbol + " ", regex=False) |
+                post_df["to_search"].str.contains("$" + symbol + ",", regex=False)
+            ]
             # Create sum the score of all the posts that mention the symbol
             points = result["score"].sum()
             results[symbol] = points
