@@ -10,6 +10,22 @@ Inspired by:
 - https://www.swaggystocks.com/dashboard/wallstreetbets/ticker-sentiment
 - https://www.reddit.com/r/wallstreetbets/comments/l1839h/gme_announcement/?utm_source=share&utm_medium=mweb
 
+Installation
+---
+
+These basic installation instructions are given for Linux machines. Exact setup will vary for Windows and Mac. 
+
+1. Install [Python 3+](https://www.python.org/downloads/) on your machine
+2. Install [Git](https://git-scm.com/downloads) on your machine
+3. Install the Python virtual environment package `python3 -m pip install venv`
+4. Clone the project into a directory that makes you happy
+5. Create a virtual environment for the project 
+6. Install the required packages using pip
+7. Create the required Reddit credentials [instructions]()
+8. Add those credentials to the config file
+9. Run the script
+10. Enjoy your new-found wealth!
+
 Resources
 ---
 
