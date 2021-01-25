@@ -63,6 +63,7 @@ def main():
             results[symbol] = points
     # Rank the symbols we find by the score
     results_df = pd.DataFrame.from_dict(results, orient='index', columns=['score'])
+    pd.set_option("display.max_rows", None, "display.max_columns", None)
     print(results_df.sort_values('score', ascending=False))
     # Rebalance the portfolio based on these scores
 
