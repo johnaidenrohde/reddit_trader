@@ -27,6 +27,14 @@ little cash to cover the inevitable volatility.
 Several unfinished parts make the code look kind of janky. I might consider cleaning this up until I can get these things
 done better.
 
+
+2/6/2021
+---
+
+Got a lot of this working and found an awsome website where I can trade with a well supported API https://alpaca.markets/community
+
+
+
 Todo
 ---
 
