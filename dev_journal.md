@@ -5,6 +5,7 @@ Got as far as finding my components and am working on downloading a set of the s
 the reddit threads. This isn't working for some reason (probably the url is wrong). Overall, it seems like a fun little
 project. 
 
+
 1/25/2021
 ---
 
@@ -13,10 +14,37 @@ I punted and just added today's list of tickers as a CSV. It should work well en
 I've now managed to get a sorted list of scored tickers. The problem I'm discovering is picking out the symbols from the
 text when so many symbols are single letters. Solved it using the "$" some people use
 
+1/29/2021
+---
+
+Added a bunch of functionality to this system. It now saves the data frames it produces as CSVs for easy 
+consumption. It uses yfinance to calculate the share prices. It determines the correct portfolio makeup, leaving a 
+little cash to cover the inevitable volatility. 
+
+2/3/2021
+---
+
+Several unfinished parts make the code look kind of janky. I might consider cleaning this up until I can get these things
+done better.
+
+Todo
+---
+
+- [x] Calculate a % of portfolio based on the score
+- [x] Check the share price of each ticker
+- [x] Determine how many full shares of each we can buy
+- [x] Create a way to save yesterdays portfolio
+- [ ] Determine the buys and sells we need to get there orders.csv
+- [ ] Actually make the trades using TD Ameritrade (I'll need a separate account for this)
+- [ ] Write a quick post explaining the code and the motivation behind it
+
+- [ ] Make a simple HTML page from the table
+- [ ] Write a Systemd task to run the script at all times
+- [ ] Add timing to the script so it updates once a day when trading is open
+-
+
 - [ ] Take this back in time
 - [ ] Chart the trends over time (Top 10 and their score over the last year)
-- [ ] Calculate a % of portfolio based on the score
-- [ ] Check the share price of each ticker
-- [ ] Determine how many full shares of each we can buy
-- [ ] Create a way to save yesterdays portfolio
-- [ ] Determine the buys and sells we need to get there
+- [ ] Track portfolio performance over time
+
+- [ ] Get a live updating list of tickers
