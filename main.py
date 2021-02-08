@@ -1,10 +1,12 @@
 import praw
 import config
 import pandas as pd
+import numpy
 import time
 from datetime import datetime
 import yfinance as yf
 import math
+from urllib import error as url_error
 import os
 
 
@@ -138,7 +140,7 @@ def calc_positions(scored_symbols_df, old_positions_df):
     scored_symbols_df['total_score'] = scored_symbols_df['score'].sum()
     scored_symbols_df['percentage'] = scored_symbols_df['score'] / scored_symbols_df['total_score']
     # Get the current ask price for each new stonk
-    scored_symbols_df['ask'] = scored_symbols_df.symbol.map(lambda x: yf.Ticker(x).info['ask'])
+    scored_symbols_df['ask'] = scored_symbols_df.symbol.map(lambda x: get_symbol_info(x, 'ask'))
     # Determine how much buying power we have right now
     if old_positions_df is None:
         buying_power = config.initial_investment_USD
@@ -146,7 +148,7 @@ def calc_positions(scored_symbols_df, old_positions_df):
         # workout how much cash we have before the next call wrecks the value
         current_cash = old_positions_df.loc[old_positions_df['symbol'] == 'cash', 'value'].values[0]
         # Get the value of all our existing stonk
-        old_positions_df['bid'] = old_positions_df.symbol.map(lambda x: yf.Ticker(x).info['bid'])
+        old_positions_df['bid'] = old_positions_df.symbol.map(lambda x: get_symbol_info(x, 'ask'))
         old_positions_df['value'] = old_positions_df['bid'] * old_positions_df['shares']
         buying_power = old_positions_df['value'].sum() + current_cash
     # Calculate the max shares
@@ -164,8 +166,27 @@ def calc_positions(scored_symbols_df, old_positions_df):
     return scored_symbols_df
 
 
-def calc_orders(new_positions_df, prev_positions_df):
-    pass
+def get_symbol_info(symbol, info):
+    try:
+        return yf.Ticker(symbol).info[info]
+    except url_error.HTTPError:
+        return numpy.NaN
+
+
+def calc_orders(new_df, prev_df):
+    if prev_df is None:
+        # simple case, if we have no portfolio we just need to buy everything
+        orders_df = new_df[['symbol', 'shares']]
+    else:
+        # join the data frame on their symbol and fill NaN with `0`s
+        orders_df = pd.merge(new_df, prev_df, on='symbol', how='outer')
+        orders_df = orders_df.fillna(0)
+        # subtract the new and old shares
+        # make buy and sell columns
+        
+
+    return orders_df
+
 
 if __name__ == '__main__':
     main()

@@ -31,8 +31,18 @@ done better.
 2/6/2021
 ---
 
-Got a lot of this working and found an awsome website where I can trade with a well supported API https://alpaca.markets/community
+Got a lot of this working and found an awesome website where I can trade with a well-supported API https://alpaca.markets/community
 
+Found a good way to run this on my droplet https://www.tecmint.com/cron-vs-anacron-schedule-jobs-using-anacron-on-linux/
+
+Also thought it might be a good idea to store all the history in one file (appending each new look as we go). That'll 
+make it easier to graph the history of this algo.  
+
+
+2/8/21
+---
+
+It may make more sense to work off of the 
 
 
 Todo
@@ -43,16 +53,16 @@ Todo
 - [x] Determine how many full shares of each we can buy
 - [x] Create a way to save yesterdays portfolio
 - [ ] Determine the buys and sells we need to get there orders.csv
-- [ ] Actually make the trades using TD Ameritrade (I'll need a separate account for this)
+- [ ] Actually make the trades using Alpaca (I'll need a separate account for this)
 - [ ] Write a quick post explaining the code and the motivation behind it
 
 - [ ] Make a simple HTML page from the table
 - [ ] Write a Systemd task to run the script at all times
-- [ ] Add timing to the script so it updates once a day when trading is open
--
+- [ ] Add timing to the script, so it updates once a day when trading is open (anacron job)
 
 - [ ] Take this back in time
 - [ ] Chart the trends over time (Top 10 and their score over the last year)
 - [ ] Track portfolio performance over time
 
 - [ ] Get a live updating list of tickers
+- [ ] Add a score factor for original poster karma?
