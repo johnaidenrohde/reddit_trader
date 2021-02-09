@@ -7,7 +7,6 @@ from datetime import datetime
 import yfinance as yf
 import math
 from urllib import error as url_error
-import os
 
 
 def main():
@@ -38,9 +37,11 @@ def main():
     print('Results found in ' + str(results_time - posts_time))
     new_positions_df.to_csv('./data/' + start_time.strftime("%Y%m%d_%H:%M:%S") + '-positions.csv')
     new_positions_df.to_csv('./data/positions.csv')
+    # Make an html table
+    new_positions_df[['symbol', 'score', 'percentage', 'shares', 'ask', 'value']].to_html('./site/index.html')
     # Determine the buys and sells based on the previous portfolio
     orders_df = calc_orders(new_positions_df, old_positions_df)
-    print(orders_df)
+    orders_df.to_csv('./data/orders.csv')
     # Perform the buys and sells
     # pd.set_option("display.max_rows", None, "display.max_columns", None)
 
@@ -179,13 +180,15 @@ def calc_orders(new_df, prev_df):
         orders_df = new_df[['symbol', 'shares']]
     else:
         # join the data frame on their symbol and fill NaN with `0`s
-        orders_df = pd.merge(new_df, prev_df, on='symbol', how='outer')
+        orders_df = pd.merge(new_df, prev_df, on='symbol', how='outer', suffixes=['', '_old'])
         orders_df = orders_df.fillna(0)
         # subtract the new and old shares
+        orders_df['diff'] = orders_df['shares'] - orders_df['shares_old']
         # make buy and sell columns
-        
+        orders_df['buy'] = [x if x > 0 else 0 for x in orders_df['diff']]
+        orders_df['sell'] = [x * -1 if x < 0 else 0 for x in orders_df['diff']]
 
-    return orders_df
+    return orders_df[['symbol', 'buy', 'sell']]
 
 
 if __name__ == '__main__':

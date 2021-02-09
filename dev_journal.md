@@ -52,11 +52,11 @@ Todo
 - [x] Check the share price of each ticker
 - [x] Determine how many full shares of each we can buy
 - [x] Create a way to save yesterdays portfolio
-- [ ] Determine the buys and sells we need to get there orders.csv
+- [x] Determine the buys and sells we need to get there orders.csv
 - [ ] Actually make the trades using Alpaca (I'll need a separate account for this)
 - [ ] Write a quick post explaining the code and the motivation behind it
 
-- [ ] Make a simple HTML page from the table
+- [x] Make a simple HTML page from the table
 - [ ] Write a Systemd task to run the script at all times
 - [ ] Add timing to the script, so it updates once a day when trading is open (anacron job)
 

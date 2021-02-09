@@ -6,6 +6,7 @@ We've decided to take investment advice from the good people of reddit. Specific
 This app scrapes reddit and makes buy and sell decisions based on the numbers of mentions of a particular ticker. 
 
 Inspired by:
+
 - https://github.com/RyanElliott10/wsbtickerbot
 - https://www.swaggystocks.com/dashboard/wallstreetbets/ticker-sentiment
 - https://www.reddit.com/r/wallstreetbets/comments/l1839h/gme_announcement/?utm_source=share&utm_medium=mweb
@@ -19,12 +20,16 @@ These basic installation instructions are given for Linux machines. Exact setup 
 2. Install [Git](https://git-scm.com/downloads) on your machine
 3. Install the Python virtual environment package `python3 -m pip install venv`
 4. Clone the project into a directory that makes you happy
-5. Create a virtual environment for the project 
-6. Install the required packages using pip
+5. Create a virtual environment for the project
+5. Enter that virtual environment
+6. Upgrade pip `python -m pip install --upgrade pip`
+6. Install the required packages using pip `pip install -r requirements.txt`
 7. Create the required Reddit credentials [instructions]()
-8. Add those credentials to the config file
+8. Add those credentials to the config file and rename it `config.py`
+8. Make two directories `data` and `site`
 9. Run the script
 10. Enjoy your new-found wealth!
+
 
 Resources
 ---
