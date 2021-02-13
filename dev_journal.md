@@ -45,6 +45,17 @@ make it easier to graph the history of this algo.
 It may make more sense to work off of the 
 
 
+2/13/21
+---
+
+Made a very rough, but not wholy ugly, web page for the results today. Need to setup a method to deploy it all, which
+probably means settings up some kind of website for myself at the same time. 
+
+Saw a good idea for saving all the historic data as a SQLite file. That would be a lot simpler and better for processing
+than my current mess of CSVs. I could also provide download links to them in case anyone was interested in the history
+of our positions or wanted to do their own work on them.
+
+
 Todo
 ---
 
@@ -66,3 +77,4 @@ Todo
 
 - [ ] Get a live updating list of tickers
 - [ ] Add a score factor for original poster karma?
+- [ ] Do a better job of handling tickers that are also common language (e.g. `A`)
