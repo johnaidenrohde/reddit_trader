@@ -142,6 +142,8 @@ def calc_positions(scored_symbols_df, old_positions_df):
     scored_symbols_df['percentage'] = scored_symbols_df['score'] / scored_symbols_df['total_score']
     # Get the current ask price for each new stonk
     scored_symbols_df['ask'] = scored_symbols_df.symbol.map(lambda x: get_symbol_info(x, 'ask'))
+    # Excluded shares with no current asking price
+    scored_symbols_df = scored_symbols_df[(scored_symbols_df['ask'] != numpy.NaN)]
     # Determine how much buying power we have right now
     if old_positions_df is None:
         buying_power = config.initial_investment_USD
@@ -172,7 +174,6 @@ def get_symbol_info(symbol, info):
         return yf.Ticker(symbol).info[info]
     except url_error.HTTPError:
         return numpy.NaN
-
 
 def calc_orders(new_df, prev_df):
     if prev_df is None:
