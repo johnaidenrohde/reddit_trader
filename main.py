@@ -38,12 +38,27 @@ def main():
     new_positions_df.to_csv('./data/' + start_time.strftime("%Y%m%d_%H:%M:%S") + '-positions.csv')
     new_positions_df.to_csv('./data/positions.csv')
     # Make an html table
-    new_positions_df[['symbol', 'score', 'percentage', 'shares', 'ask', 'value']].to_html('./site/index.html')
+    save_html_positions(new_positions_df)
     # Determine the buys and sells based on the previous portfolio
     orders_df = calc_orders(new_positions_df, old_positions_df)
     orders_df.to_csv('./data/orders.csv')
-    # Perform the buys and sells
-    # pd.set_option("display.max_rows", None, "display.max_columns", None)
+    # TODO: Perform the buys and sells
+
+
+def save_html_positions(df):
+    # Load the header and footer as strings
+    with open('./site/header.html', 'r') as file:
+        header = file.read()
+    with open('./site/footer.html', 'r') as file:
+        footer = file.read()
+    # make an html table from the positions dataframe
+    df['percentage'] = df['percentage'] * 100
+    position_table = df[['symbol', 'score', 'percentage', 'shares', 'ask', 'value']].to_html(classes='styled-table')
+    # add a line to show when it was updated
+    update_time = '<p>Updated ' + str(datetime.now()) + '</p>'
+    # save the whole thing to the site directory
+    with open('./site/index.html', 'w') as file:
+        file.write(header + update_time + position_table + footer)
 
 
 def get_post_by_date(subreddit, start_time, end_time):
